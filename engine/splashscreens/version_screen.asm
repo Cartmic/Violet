@@ -55,7 +55,7 @@ VersionScreenTilemap:
 VersionScreenTilemapEnd:
 
 VersionScreenText:
-	db "Welcome to Red++", $4E
+	db "Welcome to Violet", $4E
 	db "You are playing", $4E
 IF DEF(_BLUE) ; Hard Rom
 	db "The Hard Patch", $4E
