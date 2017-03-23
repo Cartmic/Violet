@@ -35,9 +35,14 @@ DungeonWarpData: ; 63d8 (1:63d8)
 ;	FLYWARP_DATA [Map Width][Y-pos][X-pos]
 ;	db Tileset_id
 FirstMapSpec: ; 6420 (1:6420)
-	db REDS_HOUSE_2F
-	FLYWARP_DATA REDS_HOUSE_2F_WIDTH,6,3
-	db REDS_HOUSE_2
+	db VIRIDIAN_CITY
+	FLYWARP_DATA VIRIDIAN_CITY_WIDTH,26, 23
+	db OVERWORLD
+
+;Backup FirstMapSpec for when finished testing:	
+;	db REDS_HOUSE_2F
+;	FLYWARP_DATA REDS_HOUSE_2F_WIDTH,6,3
+;	db REDS_HOUSE_2
 
 BattleCenterSpec1: ; 6428 (1:6428)
 	db BATTLE_CENTER
