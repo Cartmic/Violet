@@ -30,8 +30,18 @@ LoadDefaultNamesPlayer: ; 695d (1:695d)
 	ld [wd07d], a
 	call DisplayNamingScreen
 	ld a, [wcf4b]
-	cp $50
-	jr z, .asm_697a
+	cp "@"
+	jr nz, .notBlankName
+	ld a, [wPlayerGender]
+	and a
+	ld hl, DefaultPlayerName
+	jr z, .gotPlayerName
+	ld hl, DefaultGirlName
+.gotPlayerName
+	ld de, wPlayerName
+	ld bc, $b
+	call CopyData
+.notBlankName
 	call ClearScreen
 	call Delay3
 	ld de, RedPicFront ; $6ede
@@ -69,8 +79,13 @@ LoadDefaultNamesRival: ; 69a4 (1:69a4)
 	ld [wd07d], a
 	call DisplayNamingScreen
 	ld a, [wcf4b]
-	cp $50
-	jr z, .asm_69c1
+	cp "@"
+	jr nz, .notBlankName
+	ld hl, DefaultRivalName
+	ld de, wRivalName
+	ld bc, $b
+	call CopyData
+.notBlankName
 	call ClearScreen
 	call Delay3
 	ld de, Rival1Pic ; $6049
@@ -244,12 +259,26 @@ Func_6ad6: ; 6ad6 (1:6ad6)
 	ld bc, $14
 	jp CopyData
 
-DefaultNamesPlayerList: ; 6af2 (1:6af2)
-	db "New Name@Red@Ash@Jack@"
-DefaultNamesRivalList: ; 6b08 (1:6b08)
-	db "New NameE@Blue@Gary@John@"
+DefaultNamesPlayerList:
+	db "New Name@"
+DefaultPlayerName:
+	db "Red@"
+	db "Ash@"
+	db "Jack@"
+
+DefaultNamesRivalList:
+	db "New Name@"
+DefaultRivalName:
+	db "Blue@"
+	db "Gary@"
+	db "John@"
+
 DefaultNamesGirlList:
-	db "New Name@Green@Ashley@Leaf@"
+	db "New Name@"
+DefaultGirlName:
+	db "Green@"
+	db "Ashley@"
+	db "Leaf@"
 
 TextTerminator_6b20: ; 6b20 (1:6b20)
 	db "@"
